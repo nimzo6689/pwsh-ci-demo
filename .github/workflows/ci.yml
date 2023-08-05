@@ -1,11 +1,11 @@
-name: 'Testing and Linting'
+name: 'CI Testings'
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 jobs:
-  ci:
+  test:
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest, windows-latest]
@@ -34,7 +34,12 @@ jobs:
 
     - name: Run Pester tests
       run: |
-        Invoke-Pester -Path ".\PwshCIDemo.Tests" -CodeCoverage ".\PwshCIDemo\*.ps*1" -CodeCoverageOutputFileFormat "JaCoCo" -Passthru;
+        $PesterPreference = New-PesterConfiguration
+        $PesterPreference.Run.Path = ".\PwshCIDemo.Tests"
+        $PesterPreference.CodeCoverage.Enabled = $true
+        $PesterPreference.CodeCoverage.Path = ".\PwshCIDemo\*.ps*1"
+        $PesterPreference.CodeCoverage.OutputFormat = "JaCoCo"
+        Invoke-Pester -Configuration $PesterPreference
       shell: pwsh
 
     # - name: Upload test coverage to Codecov
