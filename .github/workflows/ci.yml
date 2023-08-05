@@ -42,9 +42,9 @@ jobs:
         Invoke-Pester -Configuration $PesterPreference
       shell: pwsh
 
-    # - name: Upload test coverage to Codecov
-    #   uses: codecov/codecov-action@v1.0.13
-    #   with:
-    #     name: BuildName
-    #     token: ${{ secrets.CODECOV }}
-    #     file: coverage.xml
+    - name: Upload test coverage to Codecov
+      uses: codecov/codecov-action@v1.0.13
+      with:
+        name: BuildName
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: coverage.xml
