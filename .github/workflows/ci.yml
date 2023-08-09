@@ -38,7 +38,6 @@ jobs:
         $PesterPreference.Run.Path = ".\PwshCIDemo.Tests"
         $PesterPreference.CodeCoverage.Enabled = $true
         $PesterPreference.CodeCoverage.Path = ".\PwshCIDemo\*.ps*1"
-        $PesterPreference.CodeCoverage.OutputFormat = "JaCoCo"
         Invoke-Pester -Configuration $PesterPreference
       shell: pwsh
 
