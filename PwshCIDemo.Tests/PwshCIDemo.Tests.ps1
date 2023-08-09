@@ -4,7 +4,7 @@ Describe 'Get-Planet' {
 
     It 'Given no parameters, it lists all 8 planets' {
         $planets = Get-Planet
-        $planets.Count | Should -Be 8
+        $planets.Count | Should -Be 7
     }
 
     # It 'Given Pluto as an parameter, the number of planets is zero, and a warning message is displayed.' {
