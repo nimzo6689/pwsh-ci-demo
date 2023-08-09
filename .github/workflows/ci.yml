@@ -23,9 +23,9 @@ jobs:
     - name: Lint with PSScriptAnalyzer
       shell: pwsh
       run: |
-        Invoke-ScriptAnalyzer -Path *.ps*1 -Recurse -OutVariable issues
-        $errors   = $issues.Where({$_.Severity -eq 'Error'})
-        $warnings = $issues.Where({$_.Severity -eq 'Warning'})
+        Invoke-ScriptAnalyzer -Path ".\PwshCIDemo" -Recurse -OutVariable issues
+        $errors   = $issues | ? {$_.Severity -eq 'Error'}
+        $warnings = $issues | ? {$_.Severity -eq 'Warning'}
         if ($errors) {
             Write-Error "There were $($errors.Count) errors and $($warnings.Count) warnings total." -ErrorAction Stop
         } else {
@@ -45,6 +45,6 @@ jobs:
     - name: Upload test coverage to Codecov
       uses: codecov/codecov-action@v1.0.13
       with:
-        name: BuildName
+        name: Output coverage with Codeocv
         token: ${{ secrets.CODECOV_TOKEN }}
         file: coverage.xml
