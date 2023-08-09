@@ -28,10 +28,4 @@ function Get-Planet {
     $planets | Where-Object { $_.Name -like $Name }
 }
 
-function Get-ComputerName($ComputerName) {
-    "For detecting as error issue by PSScriptAnalyzer."
-}
-
-Get-ComputerName -ComputerName "hardcodelocalhostname"
-
 Export-ModuleMember -Function Get-Planet
