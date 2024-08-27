@@ -17,8 +17,8 @@ jobs:
       run: |
         Write-host $PSVersionTable.PSVersion.Major $PSVersionTable.PSRemotingProtocolVersion.Minor
         Set-PSRepository psgallery -InstallationPolicy trusted
-        Install-Module -Name Pester -RequiredVersion 5.5.0 -confirm:$false -Force -ErrorAction Stop
-        Install-Module -Name PSScriptAnalyzer -RequiredVersion 1.21.0 -confirm:$false -Force -ErrorAction Stop
+        Install-Module -Name Pester -RequiredVersion 5.5.0 -confirm:$false -Force -ErrorAction Stop -SkipPublisherCheck
+        Install-Module -Name PSScriptAnalyzer -RequiredVersion 1.21.0 -confirm:$false -Force -ErrorAction Stop -SkipPublisherCheck
 
     - name: Lint with PSScriptAnalyzer
       shell: pwsh
